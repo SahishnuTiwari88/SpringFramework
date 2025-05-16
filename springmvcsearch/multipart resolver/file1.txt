@@ -1,0 +1,5 @@
+multipart resolver = sometimes client/user send pdf,photo,auto,video file using form, these are multi part data(multiple type data)
+which can be handle/resolve by multipart resolver at server side.
+for that purpose we have to add configuration of multipart resolver in our config.xml(or in java config file) by declaring bean
+
+we will use common multipart resolver as it is implementation of multipart resolver

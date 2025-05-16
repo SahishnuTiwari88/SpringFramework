@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* if we want to use static resource like css,js,images then first we have to declare it as public resource in the
+ configuration(spring-servlet.xml) file just by copying xmlns:tx changed to xmlns:mvc and the last two location line 
+ otherwise dispatcher servlet will not allow us to use all this*/
+ 
+ body{
+ background:red important;
+ }

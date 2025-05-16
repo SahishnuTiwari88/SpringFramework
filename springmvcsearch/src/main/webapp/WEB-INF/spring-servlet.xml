@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ https://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ https://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/tx
+ https://www.springframework.org/schema/tx/spring-tx.xsd
+ http://www.springframework.org/schema/mvc
+ https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:annotation-driven />
+	<!-- enabling mvc web annotation -->
+
+	<mvc:resources location="/WEB-INF/resources"
+		mapping="/resources/**" />
+	<!-- here we are making css,js,images i.e.(static resources) public, mapping 
+		gives information that while using each resource we have to give path as 
+		/resources/css(folder name)/file name -->
+
+
+
+	<context:annotation-config />
+	<!-- enable all annotation -->
+
+	<context:component-scan
+		base-package="springmvcsearch" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		name="viewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<!-- prefix gives information , in which folder(views) our pages are present 
+			,and page name is given by controller -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- configuring multipart resolver for file upload -->
+
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		name="multipartResolver" />
+
+	<!-- interceptor configration -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/welcome" />
+			<bean class="springmvcsearch.entity.MyInterceptor" />
+		</mvc:interceptor>
+		
+
+	</mvc:interceptors>
+
+	<!-- inside interceptors tag there can be multiple interceptor tag where 
+		we have to provide mapping i.e. which portion(page) has to run before/after 
+		which class mention in bean 
+		mapping me hum ye btate h ki kisse phle chlana h apne page ko-->
+
+
+</beans>
